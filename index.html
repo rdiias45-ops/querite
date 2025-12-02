@@ -484,7 +484,7 @@ function openCheckoutModal(){
     const pay = $('#chk-pay').value;
     // generate simulated receipts
     let message = 'Compra realizada com sucesso!\n';
-    if(pay==='pix') message += 'Chave PIX: 000.000.000-00 (simulado)';
+    if(pay==='pix') message += 'Chave PIX: (21) 974220277 (simulado)';
     if(pay==='boleto') message += 'Boleto gerado (simulado). Vencimento em 3 dias.';
     if(pay==='card' || pay==='debit') message += 'Pagamento com cartão simulado aprovado.';
     alert(message);
