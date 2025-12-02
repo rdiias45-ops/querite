@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Querite – Casa & Construção</title>
+  <meta name="description" content="Querite - Casa & Construção | Loja demo compatível com Wix (HTML embed). Produtos, carrinho, checkout simulado, login e contato." />
+
+  <!-- Google Font (opcional, funciona no Wix) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --yellow:#f9a825;
+      --black:#000000;
+      --white:#ffffff;
+      --gray:#e0e0e0;
+      --dark-gray:#424242;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Poppins',system-ui,Arial; color:var(--dark-gray);background:var(--white)}
+    a{color:inherit;text-decoration:none}
+
+    /* Layout */
+    .container{max-width:var(--max-width);margin:0 auto;padding:20px}
+    header{background:var(--white);border-bottom:1px solid var(--gray);position:sticky;top:0;z-index:60}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{display:flex;align-items:center;gap:8px}
+    .logo .mark{width:44px;height:44px;background:var(--yellow);border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--black)}
+    .brand h1{margin:0;font-size:18px;color:var(--black)}
+
+    nav ul{display:flex;gap:12px;align-items:center;list-style:none;margin:0;padding:0}
+    nav li a{padding:6px 10px;border-radius:6px;font-weight:600}
+    nav li a:hover{background:var(--gray)}
+
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--black);color:var(--white);padding:8px 12px;border-radius:6px;font-weight:600;border:none;cursor:pointer}
+    .btn--outline{background:transparent;color:var(--black);border:2px solid var(--black)}
+
+    /* Hero */
+    .hero{background:linear-gradient(90deg,#fff 0%, #fff 60%, rgba(249,168,37,0.08) 100%);padding:36px 0;margin-bottom:18px}
+    .hero-inner{display:flex;gap:24px;align-items:center}
+    .hero-left{flex:1}
+    .hero-right{width:420px}
+    .hero h2{font-size:28px;margin:0 0 8px;color:var(--black)}
+    .hero p{margin:0 0 12px;color:#333}
+
+    /* Categories */
+    .categories{display:flex;gap:12px;margin:18px 0}
+    .cat{flex:1;padding:12px;border:1px dashed var(--gray);border-radius:8px;text-align:center;cursor:pointer}
+    .cat:hover{background:#fff7e6}
+
+    /* Products grid */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+    .card{border:1px solid var(--gray);border-radius:8px;padding:12px;background:var(--white);display:flex;flex-direction:column}
+    .card img{width:100%;height:150px;object-fit:cover;border-radius:6px;border:1px solid #ddd}
+    .card h3{margin:10px 0 6px;font-size:16px}
+    .price{font-weight:700;color:var(--black);margin-top:auto}
+    .card .small{font-size:13px;color:#666}
+
+    /* Footer */
+    footer{border-top:1px solid var(--gray);padding:18px 0;margin-top:30px}
+    footer .flex{display:flex;gap:18px;justify-content:space-between;align-items:center}
+
+    /* Floating WhatsApp */
+    .whatsapp{position:fixed;right:18px;bottom:18px;background:var(--yellow);color:var(--black);padding:12px;border-radius:50%;box-shadow:0 6px 18px rgba(0,0,0,0.12);z-index:80}
+
+    /* Cart drawer */
+    .cart-drawer{position:fixed;right:0;top:0;height:100%;width:360px;background:var(--white);box-shadow:-6px 0 30px rgba(0,0,0,0.15);transform:translateX(110%);transition:transform .28s ease;z-index:100;padding:18px;overflow:auto}
+    .cart-drawer.open{transform:translateX(0)}
+    .cart-item{display:flex;gap:10px;margin-bottom:12px;align-items:center}
+    .cart-item img{width:64px;height:52px;object-fit:cover;border-radius:6px}
+    .cart-summary{border-top:1px solid var(--gray);padding-top:12px;margin-top:12px}
+
+    /* Modals */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;z-index:120}
+    .modal-backdrop.show{display:flex}
+    .modal{background:var(--white);width:90%;max-width:720px;border-radius:8px;padding:18px}
+
+    /* Forms */
+    input,select,textarea{width:100%;padding:10px;border:1px solid var(--gray);border-radius:6px;font-size:14px}
+    label{display:block;margin-bottom:6px;font-weight:600}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
+
+    /* Responsive */
+    @media(max-width:800px){
+      .hero-inner{flex-direction:column}
+      .hero-right{width:100%}
+      nav ul{display:none}
+    }
+
+    /* Small helpers */
+    .muted{color:#666;font-size:13px}
+    .badge{background:var(--yellow);padding:4px 8px;border-radius:6px;font-weight:700}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo">
+        <div class="mark">Q</div>
+        <div>
+          <h1>Querite</h1>
+          <div class="muted">Casa & Construção</div>
+        </div>
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+
+    <div class="actions">
+      <button id="open-login" class="btn btn--outline">Entrar</button>
+      <button id="open-cart" class="btn">Carrinho (<span id="cart-count">0</span>)</button>
+    </div>
+  </div>
+</header>
+
+<main class="container" id="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner container">
+      <div class="hero-left">
+        <h2>Querite – Tudo para sua casa e construção</h2>
+        <p>Produtos de qualidade, preços competitivos e entrega rápida. Navegue pelas categorias, encontre ofertas e finalize sua compra de forma simples.</p>
+        <div style="display:flex;gap:10px;margin-top:12px">
+          <a href="#produtos" class="btn">Ver produtos</a>
+          <a href="#sobre" class="btn btn--outline">Sobre nós</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <img src="https://source.unsplash.com/800x600/?home,construction" alt="Banner" style="width:100%;border-radius:8px;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,0.08)">
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section>
+    <div class="categories container">
+      <div class="cat" data-cat="all">Todas as categorias</div>
+      <div class="cat" data-cat="casa">Casa & Decoração</div>
+      <div class="cat" data-cat="construcao">Construção & Reforma</div>
+      <div class="cat" data-cat="ofertas">Ofertas da Semana</div>
+    </div>
+  </section>
+
+  <!-- Search and filters -->
+  <section style="margin-bottom:12px">
+    <div class="container" style="display:flex;gap:12px;align-items:center">
+      <input id="search" type="search" placeholder="Buscar produto, ex: 'tinta'" style="flex:1;padding:12px;border-radius:8px;border:1px solid var(--gray)">
+      <select id="sort" style="width:180px;padding:10px;border-radius:8px;border:1px solid var(--gray)">
+        <option value="default">Ordenar: Relevância</option>
+        <option value="price-asc">Preço: menor</option>
+        <option value="price-desc">Preço: maior</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="produtos">
+    <div class="container">
+      <h3>Produtos</h3>
+      <div id="products-grid" class="products-grid"></div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="sobre" style="margin-top:30px">
+    <div class="container">
+      <h3>Sobre a Querite</h3>
+      <p>A Querite nasceu para oferecer qualidade, praticidade e confiança em produtos para casa e construção. Nossa missão é transformar lares com soluções acessíveis e duradouras. Trabalhamos com um catálogo selecionado em decoração e materiais de construção, sempre com foco em atendimento e transparência.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contato" style="margin-top:30px">
+    <div class="container">
+      <h3>Fale com a gente</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px">
+        <div>
+          <label>Nome</label>
+          <input id="contact-name" placeholder="Seu nome">
+          <label style="margin-top:8px">E-mail</label>
+          <input id="contact-email" placeholder="seu@email.com">
+          <label style="margin-top:8px">Mensagem</label>
+          <textarea id="contact-msg" rows="5" placeholder="Escreva sua mensagem"></textarea>
+          <div style="margin-top:10px">
+            <button id="send-contact" class="btn">Enviar</button>
+            <a href="https://wa.me/5521974220277?text=Ol%C3%A1%20Querite!%20Gostaria%20de%20fazer%20orçamento." target="_blank" class="btn btn--outline" style="margin-left:8px">WhatsApp</a>
+          </div>
+        </div>
+        <div>
+          <label>Localização</label>
+          <div style="border:1px solid var(--gray);border-radius:6px;overflow:hidden">
+            <iframe src="https://www.google.com/maps?q=Zona+Norte,+Rio+de+Janeiro+-+BR&output=embed" style="width:100%;height:260px;border:0" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="flex">
+      <div>
+        <strong>Querite</strong>
+        <div class="muted">Casa & Construção</div>
+      </div>
+      <div class="muted">© <span id="year"></span> Querite. Todos os direitos reservados.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a class="whatsapp" target="_blank" href=" https://wa.me/5521974220277?text=Ol%C3%A1%20Querite!%20Gostaria%20de%20fazer%20orçamento." title="WhatsApp">
+  🟡
+</a>
+
+<!-- Cart drawer -->
+<div id="cartDrawer" class="cart-drawer" aria-hidden="true">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <h3>Carrinho</h3>
+    <button id="close-cart" class="btn btn--outline">Fechar</button>
+  </div>
+  <div id="cart-items"></div>
+  <div class="cart-summary">
+    <div style="display:flex;justify-content:space-between"><div class="muted">Subtotal</div><div id="cart-sub">R$ 0,00</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px"><div class="muted">Frete (simulado)</div><div id="cart-shipping">R$ 25,00</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;font-weight:700"><div>Total</div><div id="cart-total">R$ 0,00</div></div>
+    <div style="margin-top:12px">
+      <button id="checkout-btn" class="btn" style="width:100%">Finalizar Compra</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modals (Login / Product / Checkout) -->
+<div id="modalBackdrop" class="modal-backdrop">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// ========= Utilidades =========
+const $ = (s, el=document)=> el.querySelector(s)
+const $$ = (s, el=document)=> Array.from(el.querySelectorAll(s))
+const currency = v => 'R$ '+v.toFixed(2).replace('.',',')
+const yearEl = document.getElementById('year'); yearEl.textContent = new Date().getFullYear();
+
+// ========= Dados de produtos (10 selecionados) =========
+const products = [
+  // Casa & Decoração (5)
+  {id:1,title:'Luminária de Teto Industrial',category:'casa',price:289.90,img:'https://images.pexels.com/photos/15857173/pexels-photo-15857173.jpeg?_gl=1*1hmba8e*_ga*ODk4MTAyMzYuMTcxNDY2NzMxNA..*_ga_8JE65Q40S6*czE3NjE2MTgzNzQkbzI1JGcxJHQxNzYxNjE4NjgxJGoxMCRsMCRoMA..'},
+  {id:2,title:'Tapete Moderno Bege 2x3m',category:'casa',price:399.90,img:'https://images.pexels.com/photos/34457749/pexels-photo-34457749.jpeg?_gl=1*1hxgq1r*_ga*ODk4MTAyMzYuMTcxNDY2NzMxNA..*_ga_8JE65Q40S6*czE3NjE2MTgzNzQkbzI1JGcxJHQxNzYxNjE4NjM0JGo1NyRsMCRoMA..'},
+  {id:3,title:'Cortina Blackout 2,80m',category:'casa',price:189.00,img:'https://images.pexels.com/photos/6980717/pexels-photo-6980717.jpeg?_gl=1*1ynquv9*_ga*ODk4MTAyMzYuMTcxNDY2NzMxNA..*_ga_8JE65Q40S6*czE3NjE2MTgzNzQkbzI1JGcxJHQxNzYxNjE4NzM1JGoyNiRsMCRoMA..'},
+  {id:4,title:'Quadro Decorativo Abstrato',category:'casa',price:149.90,img:'https://images.pexels.com/photos/2249959/pexels-photo-2249959.jpeg?_gl=1*b4bioi*_ga*ODk4MTAyMzYuMTcxNDY2NzMxNA..*_ga_8JE65Q40S6*czE3NjE2MTgzNzQkbzI1JGcxJHQxNzYxNjE4ODM3JGo1OSRsMCRoMA.." alt="Quadro decorativo abstrato'},
+  // Construção & Reforma (5)
+  {id:8,title:'Kit Chuveiro Elétrico + Resistência',category:'construcao',price:179.90,img:'https://www.qluzpalhoca.com.br/wp-content/uploads/2024/11/qluz-chuveiro-eletrico-2-1024x546.png'},
+];
+
+// ========= Renderização de produtos =========
+const productsGrid = $('#products-grid');
+function renderProducts(list){
+  productsGrid.innerHTML = '';
+  list.forEach(p=>{
+    const div = document.createElement('div'); div.className='card';
+    div.innerHTML = `
+      <img src="${p.img}" alt="${p.title}">
+      <h3>${p.title}</h3>
+      <div class="small">Categoria: ${p.category==='casa'?'Casa & Decoração':'Construção'}</div>
+      <div class="price">${currency(p.price)}</div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn" data-id="${p.id}">Adicionar</button>
+        <button class="btn btn--outline" data-detail="${p.id}">Ver detalhes</button>
+      </div>
+    `;
+    productsGrid.appendChild(div);
+  })
+}
+renderProducts(products);
+
+// ========= Filtros e busca =========
+$('#search').addEventListener('input', e=>{
+  const q = e.target.value.toLowerCase();
+  const filtered = products.filter(p=>p.title.toLowerCase().includes(q) || p.category.includes(q));
+  renderProducts(filtered);
+});
+
+document.querySelectorAll('.cat').forEach(c=> c.addEventListener('click', e=>{
+  const cat = e.currentTarget.dataset.cat;
+  if(cat==='all') renderProducts(products);
+  else if(cat==='ofertas') renderProducts(products.slice(0,4));
+  else renderProducts(products.filter(p=>p.category===cat));
+}));
+
+$('#sort').addEventListener('change', e=>{
+  const v = e.target.value; let list=[...products];
+  if(v==='price-asc') list.sort((a,b)=>a.price-b.price);
+  if(v==='price-desc') list.sort((a,b)=>b.price-a.price);
+  renderProducts(list);
+});
+
+// ========= Cart (localStorage) =========
+const CART_KEY = 'querite_cart_v1';
+function loadCart(){
+  try{return JSON.parse(localStorage.getItem(CART_KEY))||[];}catch(e){return []}
+}
+function saveCart(c){localStorage.setItem(CART_KEY,JSON.stringify(c));}
+let cart = loadCart();
+
+function updateCartUI(){
+  $('#cart-count').textContent = cart.reduce((s,i)=>s+i.qty,0);
+  const itemsEl = $('#cart-items'); itemsEl.innerHTML='';
+  cart.forEach(ci=>{
+    const p = products.find(x=>x.id===ci.id);
+    const el = document.createElement('div'); el.className='cart-item';
+    el.innerHTML = `<img src="${p.img}" alt="${p.title}"><div style="flex:1"><strong>${p.title}</strong><div class="muted">${currency(p.price)}</div>
+      <div style="margin-top:6px;display:flex;gap:6px;align-items:center"><button class="btn btn--outline" data-dec="${p.id}">-</button><div>${ci.qty}</div><button class="btn btn--outline" data-inc="${p.id}">+</button></div>
+      </div><div style="margin-left:8px"> <button class="btn" data-rm="${p.id}">Remover</button></div>`;
+    itemsEl.appendChild(el);
+  });
+  const subtotal = cart.reduce((s,i)=>{const p=products.find(x=>x.id===i.id);return s + p.price * i.qty},0);
+  $('#cart-sub').textContent = currency(subtotal);
+  $('#cart-total').textContent = currency(subtotal + 25);
+}
+updateCartUI();
+
+// Add to cart handler
+productsGrid.addEventListener('click', e=>{
+  const addId = e.target.dataset.id;
+  const detId = e.target.dataset.detail;
+  if(addId){ addToCart(Number(addId)); }
+  if(detId){ openProductModal(Number(detId)); }
+});
+
+function addToCart(id, qty=1){
+  const item = cart.find(c=>c.id===id);
+  if(item) item.qty += qty; else cart.push({id,qty});
+  saveCart(cart); updateCartUI(); openCart();
+}
+
+// Cart drawer controls
+$('#open-cart').addEventListener('click', openCart);
+$('#close-cart').addEventListener('click', closeCart);
+function openCart(){document.getElementById('cartDrawer').classList.add('open')}
+function closeCart(){document.getElementById('cartDrawer').classList.remove('open')}
+
+// Cart item buttons (delegation)
+$('#cart-items').addEventListener('click', e=>{
+  if(e.target.dataset.inc){ changeQty(Number(e.target.dataset.inc),1); }
+  if(e.target.dataset.dec){ changeQty(Number(e.target.dataset.dec),-1); }
+  if(e.target.dataset.rm){ removeItem(Number(e.target.dataset.rm)); }
+});
+function changeQty(id,delta){const it=cart.find(c=>c.id===id); if(!it) return; it.qty += delta; if(it.qty<1) cart = cart.filter(c=>c.id!==id); saveCart(cart); updateCartUI();}
+function removeItem(id){cart = cart.filter(c=>c.id!==id); saveCart(cart); updateCartUI();}
+
+// Checkout flow
+$('#checkout-btn').addEventListener('click', ()=>{
+  openCheckoutModal();
+});
+
+// ========= Modals =========
+function openModal(html){ $('#modalContent').innerHTML = html; $('#modalBackdrop').classList.add('show'); }
+function closeModal(){ $('#modalBackdrop').classList.remove('show'); }
+$('#modalBackdrop').addEventListener('click', e=>{ if(e.target===e.currentTarget) closeModal(); });
+
+// Product modal
+function openProductModal(id){ const p = products.find(x=>x.id===id); if(!p) return; openModal(`
+  <div style="display:flex;gap:18px">
+    <div style="flex:1"><img src="${p.img}" style="width:100%;height:320px;object-fit:cover;border-radius:6px"></div>
+    <div style="width:360px">
+      <h2>${p.title}</h2>
+      <div class="muted">Categoria: ${p.category==='casa'?'Casa & Decoração':'Construção'}</div>
+      <div style="margin-top:12px" class="price">${currency(p.price)}</div>
+      <p style="margin-top:12px">Descrição: Produto fictício de demonstração para o e‑commerce Querite. Use este espaço para colocar informações técnicas, medidas, garantia e instruções de uso.</p>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button class="btn" id="modal-add">Adicionar ao carrinho</button>
+        <button class="btn btn--outline" id="modal-close">Fechar</button>
+      </div>
+    </div>
+  </div>
+`);
+  $('#modal-close').addEventListener('click', closeModal);
+  $('#modal-add').addEventListener('click', ()=>{ addToCart(id); closeModal(); });
+}
+
+// Login modal
+$('#open-login').addEventListener('click', ()=>{
+  openModal(`<h3>Entrar / Cadastrar</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+      <div>
+        <label>E-mail</label>
+        <input id="login-email" placeholder="seu@email.com">
+        <label style="margin-top:8px">Senha</label>
+        <input id="login-pass" type="password" placeholder="********">
+        <div style="margin-top:8px"><button class="btn" id="do-login">Entrar</button></div>
+      </div>
+      <div>
+        <label>Nome</label>
+        <input id="reg-name" placeholder="Seu nome">
+        <label style="margin-top:8px">E-mail</label>
+        <input id="reg-email" placeholder="seu@email.com">
+        <label style="margin-top:8px">Senha</label>
+        <input id="reg-pass" type="password" placeholder="********">
+        <div style="margin-top:8px"><button class="btn" id="do-register">Cadastrar</button></div>
+      </div>
+    </div>
+  `);
+
+  $('#do-login').addEventListener('click', ()=>{
+    alert('Login simulado. Em um projeto real, a autenticação ocorreria no servidor.'); closeModal();
+  });
+  $('#do-register').addEventListener('click', ()=>{
+    alert('Cadastro simulado. Dados salvos localmente.'); closeModal();
+  });
+});
+
+// Contact form
+$('#send-contact').addEventListener('click', ()=>{
+  const name = $('#contact-name').value.trim();
+  const email = $('#contact-email').value.trim();
+  const msg = $('#contact-msg').value.trim();
+  if(!name||!email||!msg){ alert('Preencha todos os campos do formulário.'); return; }
+  alert('Mensagem enviada! Responderemos em breve.');
+  $('#contact-name').value='';$('#contact-email').value='';$('#contact-msg').value='';
+});
+
+// Open checkout modal
+function openCheckoutModal(){
+  const subtotal = cart.reduce((s,i)=>{const p=products.find(x=>x.id===i.id);return s + p.price * i.qty},0);
+  if(cart.length===0){ alert('Seu carrinho está vazio.'); return; }
+  openModal(`
+    <h3>Checkout</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+      <div>
+        <label>Nome</label>
+        <input id="chk-name">
+        <label style="margin-top:8px">E-mail</label>
+        <input id="chk-email">
+        <label style="margin-top:8px">CEP</label>
+        <input id="chk-cep">
+        <label style="margin-top:8px">Endereço</label>
+        <input id="chk-address">
+      </div>
+      <div>
+        <label>Método de Pagamento</label>
+        <select id="chk-pay">
+          <option value="pix">PIX</option>
+          <option value="boleto">Boleto</option>
+          <option value="card">Cartão de Crédito</option>
+          <option value="debit">Cartão de Débito</option>
+        </select>
+        <div id="card-area" style="margin-top:8px;display:none">
+          <label>Número do cartão</label>
+          <input id="card-num">
+          <label style="margin-top:8px">Validade</label>
+          <input id="card-exp" placeholder="MM/AA">
+          <label style="margin-top:8px">CVV</label>
+          <input id="card-cvv">
+        </div>
+        <div style="margin-top:12px;font-weight:700">Resumo: ${currency(subtotal)} + R$25,00 frete</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px"><button class="btn" id="place-order">Confirmar Compra</button><button class="btn btn--outline" id="close-check">Cancelar</button></div>
+  `);
+
+  $('#chk-pay').addEventListener('change', e=>{ $('#card-area').style.display = e.target.value.includes('card') ? 'block' : 'none'; });
+  $('#close-check').addEventListener('click', closeModal);
+  $('#place-order').addEventListener('click', ()=>{
+    // simulate payment
+    const pay = $('#chk-pay').value;
+    // generate simulated receipts
+    let message = 'Compra realizada com sucesso!\n';
+    if(pay==='pix') message += 'Chave PIX: 000.000.000-00 (simulado)';
+    if(pay==='boleto') message += 'Boleto gerado (simulado). Vencimento em 3 dias.';
+    if(pay==='card' || pay==='debit') message += 'Pagamento com cartão simulado aprovado.';
+    alert(message);
+    // clear cart
+    cart = []; saveCart(cart); updateCartUI(); closeModal(); closeCart();
+  });
+}
+
+// Small UX improvements
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeModal(); closeCart(); }});
+
+</script>
+
+</body>
+</html>
